@@ -17,26 +17,36 @@ class ViewController: UIViewController {
   private var tapped = false
   private var bannerView: GAMBannerView!
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
+  override func viewDidAppear(_ animated: Bool) {
     // Do any additional setup after loading the view.
     Didomi.shared.onReady {
       Didomi.shared.setupUI(containerController: self)
     }
+    
     addGoogleBanner()
     
+    // Execute Gimii
+    guard let window = self.view.window else {
+      print("Erreur : pas de UIWindow trouvée")
+      return
+    }
+    
     let didomiListener = EventListener()
- 
+    
     didomiListener.onNoticeClickDisagree = { _ in
-      if let window = self.view.window {
-        Gimii.execute(with: window, raiserId: "ADD_RAISER_ID_HERE")
-      } else {
-        print("Erreur : pas de UIWindow trouvée")
+      DispatchQueue.main.async {
+        Gimii.execute(with: window, raiserId: "RAISER_ID")
+        Didomi.shared.removeEventListener(listener: didomiListener)
       }
     }
     
+    Gimii.execute(with: window, raiserId: "RAISER_ID")
+    
     Didomi.shared.addEventListener(listener: didomiListener)
-
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
   }
   
   @IBAction func didTap(_ sender: Any) {

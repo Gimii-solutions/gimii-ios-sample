@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>GADApplicationIdentifier</key>
-	<string>Add GADApplicationIdentifier</string>
+	<string>ID HERE</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
