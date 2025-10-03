@@ -83,6 +83,33 @@ class ViewController: UIViewController {
 
 Gimii is executed when the user refuses the CMP (Consent Management Platform).
 
+Gimii Events :
+
+```swift
+...
+gimii.setEventListener(self)
+...
+extension ViewController: GimiiEventListener {
+  
+  func onRefused() {
+    Logger.debug("GimiiEventListener onRefused")
+  }
+  
+  func onAccepted() {
+    Logger.debug("GimiiEventListener onAccepted")
+  }
+  
+  func onDisplayed() {
+    Logger.debug("GimiiEventListener onDisplayed")
+  }
+  
+  func onError(_ error: GimiiError) {
+    Logger.debug("GimiiEventListener onError - \(error)")
+  }
+}
+```
+
+
 ### 5) Environments
 
 Available environments:
