@@ -1,5 +1,18 @@
 # Gimii iOS SDK
 
+## Run this sample
+
+1. Open `Gimii iOS Sample.xcodeproj` in Xcode and let Swift Package Manager resolve the packages.
+2. Replace the placeholders:
+
+| File | Value |
+|---|---|
+| `Gimii iOS Sample/AppDelegate.swift` | Didomi `API_KEY` and `NOTICE_ID` |
+| `Gimii iOS Sample/ViewController.swift` | `RAISER_ID` (the sample uses the staging environment) |
+| `Gimii iOS Sample/Info.plist` | Your `GADApplicationIdentifier` (`ID HERE`) |
+
+3. Run the app and tap "Disagree" on the Didomi notice: the Gimii pop-in appears.
+
 ## Integrate Gimii SDK in Your iOS App
 
 This guide explains how to add the Gimii iOS SDK to your application, configure environments, enable logging, and optionally apply ad targeting to Google Ad Manager/AdMob requests.
