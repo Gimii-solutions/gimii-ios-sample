@@ -10,12 +10,17 @@ Add the Gimii iOS SDK via Swift Package Manager (SPM). In Xcode:
 
 1. Go to `File > Add Packages`.
 2. Enter the package URL: `https://github.com/Gimii-solutions/gimii-ios-sdk`.
-3. Select the latest release (e.g., `1.1.0-beta1`).
+3. Select version `1.1.0-beta4` or later.
 4. Add the package to your project.
 
-The Gimii iOS SDK depends on:
-- Didomi SDK
-- Google Mobile Ads (for ad targeting)
+The SDK does not bring its dependencies: add these packages to your app too.
+
+| Package | URL | Version |
+|---|---|---|
+| Didomi | `https://github.com/didomi/didomi-ios-sdk-spm` | 2.30.0 or later, below 3.0.0 |
+| Google Mobile Ads | `https://github.com/googleads/swift-package-manager-google-mobile-ads` | 12.x or 13.x |
+
+The SDK requires iOS 13 or later.
 
 ### 2) Configure Didomi IDs
 
@@ -28,7 +33,7 @@ Didomi.shared.initialize(parameters)
 
 ### 3) Add Google Ads Application ID
 
-If using Google Ads, add your application ID to `Info.plist`:
+Add your application ID to `Info.plist`. This key is required: without it, Google Mobile Ads crashes the app at launch.
 
 ```xml
 <key>GADApplicationIdentifier</key>
@@ -62,7 +67,7 @@ class ViewController: UIViewController {
         if let window = self.view.window {
             let gimii = Gimii.getInstance(
                 window: window,
-                raiserId: "raiser_eac3e0ae",
+                raiserId: "RAISER_ID",
                 environment: .production, // .qa | .staging | .production
                 logMode: .info // .debug for verbose logs, .info for standard
             )
@@ -109,13 +114,15 @@ extension ViewController: GimiiEventListener {
 }
 ```
 
+`onError` is only called for network, configuration, consent and interaction errors. A display delay that has not elapsed yet is not reported.
+
 
 ### 5) Environments
 
 Available environments:
-- `.qa` → `https://qa.api.gimii.dev` / `https://qa.static.gimii.dev/app-mobile.html`
-- `.staging` → `https://api.gimii.dev` / `https://static.gimii.dev/app-mobile.html`
-- `.production` → `https://api.gimii.fr` / `https://static.gimii.fr/app-mobile.html`
+- `.qa` → `https://qa.api.gimii.dev` / `https://static.gimii.dev/gimii-embedder.html`
+- `.staging` → `https://api.gimii.dev` / `https://static.gimii.dev/gimii-embedder.html`
+- `.production` → `https://api.gimii.fr` / `https://static.gimii.fr/gimii-embedder.html`
 
 Select the environment when calling `Gimii.getInstance(...)`.
 
@@ -130,12 +137,12 @@ Set it via `Gimii.getInstance(logMode: .debug)` during initialization.
 
 ### 7) Ad Targeting (Optional)
 
-If you use Google Ad Manager/AdMob, you can apply Gimii custom targeting to a `GAMRequest`:
+If you use Google Ad Manager/AdMob, you can apply Gimii custom targeting to an `AdManagerRequest`:
 
 ```swift
 import GoogleMobileAds
 
-let request = GAMRequest()
+let request = AdManagerRequest()
 Gimii.applyGimiiTargeting(to: request)
 ```
 

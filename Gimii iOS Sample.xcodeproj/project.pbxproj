@@ -360,16 +360,16 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/didomi/didomi-ios-sdk-spm";
 			requirement = {
-				kind = exactVersion;
-				version = 1.87.0;
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.30.0;
 			};
 		};
 		266660CE2E685EA5001501D2 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads";
 			requirement = {
-				kind = exactVersion;
-				version = 11.10.0;
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.0.0;
 			};
 		};
 		266660D12E685ED1001501D2 /* XCRemoteSwiftPackageReference "gimii-ios-sdk" */ = {
@@ -377,7 +377,7 @@
 			repositoryURL = "https://github.com/Gimii-solutions/gimii-ios-sdk";
 			requirement = {
 				kind = exactVersion;
-				version = 1.0.0;
+				version = "1.1.0-beta4";
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
