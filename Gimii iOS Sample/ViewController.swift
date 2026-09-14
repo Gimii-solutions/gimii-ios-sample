@@ -15,7 +15,7 @@ class ViewController: UIViewController {
   @IBOutlet weak var label: UILabel!
   
   private var tapped = false
-  private var bannerView: GAMBannerView!
+  private var bannerView: AdManagerBannerView!
   
   override func viewDidAppear(_ animated: Bool) {
     // Do any additional setup after loading the view.
@@ -27,20 +27,26 @@ class ViewController: UIViewController {
     
     // Execute Gimii
     guard let window = self.view.window else {
-      print("Erreur : pas de UIWindow trouvée")
+      print("No UIWindow found")
       return
     }
-    
+
+    let gimii = Gimii.getInstance(
+      window: window,
+      raiserId: "RAISER_ID",
+      environment: .staging,
+      logMode: .debug
+    )
     let didomiListener = EventListener()
-    
+
     didomiListener.onNoticeClickDisagree = { _ in
       DispatchQueue.main.async {
-        Gimii.execute(with: window, raiserId: "RAISER_ID")
+        gimii.execute()
         Didomi.shared.removeEventListener(listener: didomiListener)
       }
     }
-    
-    Gimii.execute(with: window, raiserId: "RAISER_ID")
+
+    gimii.execute()
     
     Didomi.shared.addEventListener(listener: didomiListener)
   }
@@ -56,8 +62,8 @@ class ViewController: UIViewController {
   
   private func addGoogleBanner() {
     // Initialize the Google Mobile Ads SDK.
-    GADMobileAds.sharedInstance().start()
-    bannerView = GAMBannerView(adSize: GADAdSizeBanner)
+    MobileAds.shared.start()
+    bannerView = AdManagerBannerView(adSize: AdSizeBanner)
     bannerView.adUnitID = "/6499/example/banner" // GAM demo unit ID
     bannerView.rootViewController = self
     bannerView.translatesAutoresizingMaskIntoConstraints = false
@@ -68,7 +74,7 @@ class ViewController: UIViewController {
       bannerView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
     ])
     
-    let request = GAMRequest()
+    let request = AdManagerRequest()
     Gimii.applyGimiiTargeting(to: request)
     bannerView.load(request)
   }
