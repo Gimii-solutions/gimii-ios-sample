@@ -23,7 +23,7 @@ Add the Gimii iOS SDK via Swift Package Manager (SPM). In Xcode:
 
 1. Go to `File > Add Packages`.
 2. Enter the package URL: `https://github.com/Gimii-solutions/gimii-ios-sdk`.
-3. Select version `1.1.0-beta4` or later.
+3. Select version `1.1.0-beta5` or later.
 4. Add the package to your project.
 
 The SDK does not bring its dependencies: add these packages to your app too.
