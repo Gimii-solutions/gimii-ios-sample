@@ -377,7 +377,7 @@
 			repositoryURL = "https://github.com/Gimii-solutions/gimii-ios-sdk";
 			requirement = {
 				kind = exactVersion;
-				version = "1.1.0-beta5";
+				version = "1.1.0-beta6";
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

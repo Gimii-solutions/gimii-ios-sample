@@ -6,7 +6,7 @@ Manager banner. For production integration and the current native API, use the
 
 ## Dependency source
 
-This sample pins the published `gimii-ios-sdk` package to `1.1.0-beta5` in its
+This sample pins the published `gimii-ios-sdk` package to `1.1.0-beta6` in its
 Xcode project. Didomi starts at `2.30.0`; Google Mobile Ads starts at `12.0.0`,
 with the project's SwiftPM version requirements determining resolution.
 These pins are separate from the native SDK source checkout.
